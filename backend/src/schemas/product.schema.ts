@@ -18,11 +18,11 @@ export const createProductSchema = z.object({
       /^[A-Za-z0-9_\-]+$/,
       "SKU may only contain letters, numbers, hyphens, and underscores",
     ),
-  description: z.string().max(1000).optional(),
+  description: z.string().max(1000).nullable().optional(),
   quantity: nonNegativeInt.optional().default(0),
-  cost_price: positiveFloat.optional(),
-  selling_price: positiveFloat.optional(),
-  low_stock_threshold: nonNegativeInt.optional(),
+  cost_price: positiveFloat.nullable().optional(),
+  selling_price: positiveFloat.nullable().optional(),
+  low_stock_threshold: nonNegativeInt.nullable().optional(),
 });
 
 export const updateProductSchema = z.object({

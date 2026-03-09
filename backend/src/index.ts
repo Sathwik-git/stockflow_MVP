@@ -1,7 +1,6 @@
 import "dotenv/config";
-import express, { Request, Response, NextFunction } from "express";
+import express from "express";
 import cors from "cors";
-
 import authRoutes from "./routes/auth.routes";
 import productRoutes from "./routes/product.routes";
 import dashboardRoutes from "./routes/dashboard.routes";
@@ -11,16 +10,18 @@ import { authenticate } from "./middlewares/auth.middleware";
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-app.use(cors({
-  origin: ["http://localhost:3000", "http://localhost:3001"],
-  credentials: true,
-}));
+app.use(
+  cors({
+    origin: ["http://localhost:3000", "http://localhost:3001"],
+    credentials: true,
+  }),
+);
 app.use(express.json());
 
 app.use("/api/auth", authRoutes);
 app.use("/api/products", authenticate, productRoutes);
 app.use("/api/dashboard", authenticate, dashboardRoutes);
-app.use("/api/settings", authenticate,settingsRoutes);
+app.use("/api/settings", authenticate, settingsRoutes);
 
 app.listen(PORT, () => {
   console.log(`app listening on port ${PORT}`);
