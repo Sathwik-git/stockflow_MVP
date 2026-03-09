@@ -40,9 +40,9 @@ model Product{
   sku String
   description String?
   quantity Int @default(0)
-  cost_price Float
-  selling_price Float
-  low_stock_threshold Int
+  cost_price Float?
+  selling_price Float?
+  low_stock_threshold Int?
   created_at DateTime @default(now())
   updated_at DateTime @updatedAt
   organisation Organisation @relation(fields: [organisation_id],references: [id])
